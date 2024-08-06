@@ -42,7 +42,7 @@ public class Worker extends BaseEntity {
     private Crop crop;
 
     @OneToMany(mappedBy = "worker")
-    private List<Instrument> instruments;
+    private List<InstrumentBooking> instrumentBookings;
 
    
 }

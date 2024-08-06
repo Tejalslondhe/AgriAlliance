@@ -35,10 +35,6 @@ public class Instrument {
     private String availabilityStatus;
     private Double ratePerDay;
 
-    @ManyToOne
-    @JoinColumn(name = "worker_id")
-    private Worker worker;
-
     @OneToMany(mappedBy = "instrument")
     private List<InstrumentBooking> instrumentBookings;
 

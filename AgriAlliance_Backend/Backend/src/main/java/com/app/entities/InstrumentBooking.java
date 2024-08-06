@@ -36,6 +36,10 @@ public class InstrumentBooking {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    
+    @ManyToOne
+    @JoinColumn(name = "worker_id")
+    private User worker;
 
     private LocalDate bookingDate;
     private LocalDate returnDate;

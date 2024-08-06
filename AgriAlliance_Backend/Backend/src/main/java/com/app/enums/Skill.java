@@ -1,0 +1,14 @@
+package com.app.enums;
+
+public enum Skill {
+    AGRICULTURE,
+    FARMING,
+    HARVESTING,
+    PLANTING,
+    IRRIGATION,
+    MACHINERY_OPERATION,
+    PEST_CONTROL,
+    LIVESTOCK_MANAGEMENT,
+    SOIL_CARE,
+    CROP_CARE
+}

@@ -6,4 +6,5 @@ import com.app.entities.Worker;
 
 public interface WorkerRepository extends JpaRepository<Worker, Long> {
 
+	boolean findByEmail(String email);
 }

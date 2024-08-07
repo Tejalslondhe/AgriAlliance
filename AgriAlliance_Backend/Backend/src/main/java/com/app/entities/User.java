@@ -28,8 +28,6 @@ public class User extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @OneToMany(mappedBy = "user")
-    private List<InstrumentBooking> instrumentBookings;
-
+   
    
 }

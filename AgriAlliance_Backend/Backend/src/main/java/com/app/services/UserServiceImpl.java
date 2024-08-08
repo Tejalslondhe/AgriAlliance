@@ -3,13 +3,14 @@ package com.app.services;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.app.custom_exception.ApiException;
-import com.app.custom_exception.InvalidCredentialsException;
 import com.app.dto.UserSignup;
 import com.app.entities.User;
 import com.app.repository.UserRepository;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
 		
 		User user = mapper.map(reqDTO,User.class);
 		
-		if(userDao.findByEmail(reqDTO.getEmail()))
+		if(userDao.existsByEmail(reqDTO.getEmail()))
 			throw new ApiException("Email already exist !");
 		
 		user.setPassword(encoder.encode(user.getPassword()));

@@ -1,5 +1,7 @@
 package com.app.services;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,6 +34,11 @@ public class UserServiceImpl implements UserService {
 		
 		user.setPassword(encoder.encode(user.getPassword()));
 		return mapper.map(userDao.save(user), UserSignup.class);
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		return userDao.findAll();
 	}
 	
 

@@ -32,25 +32,14 @@ public class SigninSignupController {
 	@Autowired
 	private AuthenticationManager authMgr;
 
-	// sign up
-	/*
-	 * URL - http://host:port/users/signup Method - POST request payload : sign up
-	 * DTO (user details) resp : In case of success : Auth Resp DTO :mesg + JWT
-	 * token + SC 201 In case of failure : SC 401
-	 * 
-	 */
+	
 	@PostMapping("/signup")
 	public ResponseEntity<?> userSignup(@RequestBody @Valid UserSignup dto) {
 		System.out.println("in sign up " + dto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(userService.userRegistration(dto));
 	}
 
-	/*
-	 * URL - http://host:port/users/signin Method - POST request payload : Auth req
-	 * DTO : email n password resp : In case of success : Auth Resp DTO :mesg + JWT
-	 * token + SC 201 In case of failure : SC 401
-	 * 
-	 */
+	
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@RequestBody @Valid SigninRequest request) {
 		System.out.println("in sign in" + request);

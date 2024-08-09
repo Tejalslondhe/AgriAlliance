@@ -19,7 +19,7 @@ public class SigninRequest {
 	private String email;
 	
 	@NotEmpty
-	@Length(min=3,max=20,message = "Invalid password length")
+	@Length(min=3,max=50,message = "Invalid password length")
 	private String password;
 	
 

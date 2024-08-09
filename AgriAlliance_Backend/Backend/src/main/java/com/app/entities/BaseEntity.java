@@ -28,7 +28,7 @@ public abstract class BaseEntity {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", length=100, nullable = false)
     private String password;
 
     @Column(name = "contact_number", nullable = false)

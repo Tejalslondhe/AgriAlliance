@@ -21,6 +21,39 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 
+
+@Component
+@Slf4j
+public class JwtUtils {
+
+    @Value("${EXP_TIMEOUT}")
+    private int jwtExpirationMs;
+
+    private Key key;
+
+    @PostConstruct
+    public void init() {
+        // This will generate a secure key for HS512 and is guaranteed to be of the correct size.
+        key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    }
+
+    public String generateJwtToken(Authentication authentication) {
+        log.info("generate jwt token " + authentication);
+        CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
+
+        return Jwts.builder()
+                .setSubject(userPrincipal.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(new Date().getTime() + jwtExpirationMs))
+                .claim("authorities", getAuthoritiesInString(userPrincipal.getAuthorities()))
+                .claim("user_id", userPrincipal.getUser().getUserId())
+                .signWith(key, SignatureAlgorithm.HS512)
+                .compact();
+    }
+
+    
+
+/*
 @Component
 @Slf4j
 public class JwtUtils {
@@ -31,8 +64,16 @@ public class JwtUtils {
 	@Value("${EXP_TIMEOUT}")
 	private int jwtExpirationMs;
 	
-	private Key key;
+	//private Key key;
+	
+	private Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
+	@PostConstruct
+	public void init() {
+		key = Keys.hmacShaKeyFor(jwtSecret.getBytes());	
+	}
+	
+	
 	public String generateJwtToken(Authentication authentication) {
 		log.info("generate jwt token " + authentication);
 		CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
@@ -55,12 +96,7 @@ public class JwtUtils {
 				// Using token signing algo : HMAC using SHA-512
 				.compact();}
 	
-	@PostConstruct
-	public void init() {
-		key = Keys.hmacShaKeyFor(jwtSecret.getBytes());	
-	}
-	
-	
+	*/
 	// this method will be invoked by our custom JWT filter
 		public String getUserNameFromJwtToken(Claims claims) {
 			return claims.getSubject();

@@ -6,5 +6,5 @@ import com.app.entities.Merchant;
 
 public interface MerchantRepository extends JpaRepository<Merchant, Long> {
 
-	boolean findByEmail(String email);
+	boolean existsByEmail(String email);
 }

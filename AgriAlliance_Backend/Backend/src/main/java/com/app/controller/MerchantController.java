@@ -13,40 +13,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.UsersDTO;
-import com.app.entities.User;
-import com.app.services.UserService;
+import com.app.dto.MerchantDto;
+import com.app.entities.Merchant;
+import com.app.services.MerchantService;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/merchants")
+public class MerchantController {
 
-	
 	@Autowired
-	private UserService userService;
+	private MerchantService merchantService;
 	
 	@PostMapping
-	public UsersDTO add(@RequestBody UsersDTO userdto)
+	public MerchantDto add(@RequestBody MerchantDto newMerchant)
 	{
-		return userService.addNewUser(userdto);
+		return merchantService.addNewMerchant(newMerchant);
 	}
 	
 	@GetMapping
-	public List<UsersDTO> display()
+	public List<MerchantDto> display()
 	{
-		return userService.displayAllUers();
+		return merchantService.displayAllMerchant();
 	}
-	
 	@DeleteMapping("/{id}")
 	public  ResponseEntity<Void> delete(@PathVariable Long id)
 	{
-		userService.deleteUser(id);
+		merchantService.deleteMerchant(id);
 		return ResponseEntity.noContent().build();
 	}
 	
+	
 	@PutMapping("/{id}")
-	public UsersDTO update(@PathVariable Long id, @RequestBody UsersDTO userdto)
+	public MerchantDto update(@PathVariable Long id ,@RequestBody MerchantDto merchant)
 	{
-		return userService.updateUser(id,userdto);
+		return merchantService.updateMerchant(id,merchant);
 	}
 }

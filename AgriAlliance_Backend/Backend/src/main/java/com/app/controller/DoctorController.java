@@ -13,40 +13,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.UsersDTO;
-import com.app.entities.User;
-import com.app.services.UserService;
+import com.app.dto.DoctorDto;
+import com.app.services.DoctorService;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/doctors")
+public class DoctorController {
 
-	
 	@Autowired
-	private UserService userService;
+	private DoctorService doctorService;
+	
 	
 	@PostMapping
-	public UsersDTO add(@RequestBody UsersDTO userdto)
+	public DoctorDto add(@RequestBody DoctorDto doctor)
 	{
-		return userService.addNewUser(userdto);
+		return doctorService.addNewDoctor(doctor);
 	}
 	
 	@GetMapping
-	public List<UsersDTO> display()
+	public List<DoctorDto> display()
 	{
-		return userService.displayAllUers();
+		return doctorService.displayAllDoctor();
 	}
 	
 	@DeleteMapping("/{id}")
-	public  ResponseEntity<Void> delete(@PathVariable Long id)
+	public ResponseEntity<Void> delete(@PathVariable Long id)
 	{
-		userService.deleteUser(id);
+		doctorService.deleteDoctor(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping("/{id}")
-	public UsersDTO update(@PathVariable Long id, @RequestBody UsersDTO userdto)
+	public DoctorDto update(@PathVariable Long id,@RequestBody DoctorDto doctor)
 	{
-		return userService.updateUser(id,userdto);
+		return doctorService.updateDoctor(id, doctor);
 	}
 }

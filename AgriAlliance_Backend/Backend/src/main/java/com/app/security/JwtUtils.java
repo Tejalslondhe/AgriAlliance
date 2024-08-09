@@ -53,50 +53,7 @@ public class JwtUtils {
 
     
 
-/*
-@Component
-@Slf4j
-public class JwtUtils {
-	
-	@Value("${SECRET_Key}")
-	private String jwtSecret;
-	
-	@Value("${EXP_TIMEOUT}")
-	private int jwtExpirationMs;
-	
-	//private Key key;
-	
-	private Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
-	@PostConstruct
-	public void init() {
-		key = Keys.hmacShaKeyFor(jwtSecret.getBytes());	
-	}
-	
-	
-	public String generateJwtToken(Authentication authentication) {
-		log.info("generate jwt token " + authentication);
-		CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
-//JWT : userName,issued at ,exp date,digital signature(does not typically contain password , can contain authorities
-		return Jwts.builder() // JWTs : a Factory class , used to create JWT tokens
-				.setSubject((userPrincipal.getUsername())) // setting subject part of the token(typically user
-															// name/email)
-				.setIssuedAt(new Date())// Sets the JWT Claims iat (issued at) value of current date
-				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))// Sets the JWT Claims exp
-																					// (expiration) value.
-				// setting a custom claim , to add granted authorities
-				.claim("authorities", getAuthoritiesInString(userPrincipal.getAuthorities()))
-				// setting a custom claim , to add user id (remove it if not required in the project)
-				.claim("user_id",userPrincipal.getUser().getUserId())
-		
-				.signWith(key, SignatureAlgorithm.HS512) // Signs the constructed JWT using the specified
-															// algorithm with the specified key, producing a
-															// JWS(Json web signature=signed JWT)
-
-				// Using token signing algo : HMAC using SHA-512
-				.compact();}
-	
-	*/
 	// this method will be invoked by our custom JWT filter
 		public String getUserNameFromJwtToken(Claims claims) {
 			return claims.getSubject();

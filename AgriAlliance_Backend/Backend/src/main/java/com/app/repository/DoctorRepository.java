@@ -6,5 +6,5 @@ import com.app.entities.Doctor;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long>{
 
-	boolean findByEmail(String email);
+	boolean existsByEmail(String email);
 }

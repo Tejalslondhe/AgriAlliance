@@ -34,14 +34,13 @@ public class InstrumentBooking {
     private Instrument instrument;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    
+    @JoinColumn(name = "farmer_id")
+    private Farmer farmer;
+        
     @ManyToOne
     @JoinColumn(name = "worker_id")
-    private User worker;
+    private Worker worker;
 
     private LocalDate bookingDate;
     private LocalDate returnDate;
-
 }

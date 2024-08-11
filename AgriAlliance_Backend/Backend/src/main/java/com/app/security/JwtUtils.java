@@ -15,12 +15,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Component;
 
+import com.app.entities.Doctor;
+import com.app.entities.Farmer;
+import com.app.entities.Merchant;
+import com.app.entities.Worker;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
-
 
 @Component
 @Slf4j
@@ -33,130 +37,103 @@ public class JwtUtils {
 
     @PostConstruct
     public void init() {
-        // This will generate a secure key for HS512 and is guaranteed to be of the correct size.
+        // Generate a secure key for HS512
         key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
     }
 
-    public String generateJwtToken(Authentication authentication) {
-        log.info("generate jwt token " + authentication);
+    // Generate JWT token for the authenticated user
+   /* public String generateJwtToken(Authentication authentication) {
+        log.info("Generating JWT token for authentication: " + authentication);
+
         CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
+        String username = userPrincipal.getUsername();
+        String role = userPrincipal.getUser().getRole().name();
+        Long userId = getUserIdFromUserRole(userPrincipal);
 
         return Jwts.builder()
-                .setSubject(userPrincipal.getUsername())
+                .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + jwtExpirationMs))
                 .claim("authorities", getAuthoritiesInString(userPrincipal.getAuthorities()))
-                .claim("user_id", userPrincipal.getUser().getUserId())
+                .claim("user_id", userId)
+                .claim("role", role)
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
+    }*/
+    
+    public String generateJwtToken(Authentication authentication) {
+        CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
+        return Jwts.builder()
+            .setSubject(userPrincipal.getUsername())
+            .setIssuedAt(new Date())
+            .setExpiration(new Date(new Date().getTime() + jwtExpirationMs))
+            .claim("authorities", getAuthoritiesInString(userPrincipal.getAuthorities()))
+            .claim("user_id", userPrincipal.getUserId()) // Use appropriate method
+            .signWith(key, SignatureAlgorithm.HS512)
+            .compact();
     }
 
-    
 
-/*
-@Component
-@Slf4j
-public class JwtUtils {
-	
-	@Value("${SECRET_Key}")
-	private String jwtSecret;
-	
-	@Value("${EXP_TIMEOUT}")
-	private int jwtExpirationMs;
-	
-	//private Key key;
-	
-	private Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    // Extract username from JWT token
+    public String getUserNameFromJwtToken(Claims claims) {
+        return claims.getSubject();
+    }
 
-	@PostConstruct
-	public void init() {
-		key = Keys.hmacShaKeyFor(jwtSecret.getBytes());	
-	}
-	
-	
-	public String generateJwtToken(Authentication authentication) {
-		log.info("generate jwt token " + authentication);
-		CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
-//JWT : userName,issued at ,exp date,digital signature(does not typically contain password , can contain authorities
-		return Jwts.builder() // JWTs : a Factory class , used to create JWT tokens
-				.setSubject((userPrincipal.getUsername())) // setting subject part of the token(typically user
-															// name/email)
-				.setIssuedAt(new Date())// Sets the JWT Claims iat (issued at) value of current date
-				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))// Sets the JWT Claims exp
-																					// (expiration) value.
-				// setting a custom claim , to add granted authorities
-				.claim("authorities", getAuthoritiesInString(userPrincipal.getAuthorities()))
-				// setting a custom claim , to add user id (remove it if not required in the project)
-				.claim("user_id",userPrincipal.getUser().getUserId())
-		
-				.signWith(key, SignatureAlgorithm.HS512) // Signs the constructed JWT using the specified
-															// algorithm with the specified key, producing a
-															// JWS(Json web signature=signed JWT)
+    // Validate JWT token and return claims
+    public Claims validateJwtToken(String jwtToken) {
+        try {
+            return Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(jwtToken)
+                    .getBody();
+        } catch (Exception e) {
+            log.error("JWT token validation failed", e);
+            throw e;
+        }
+    }
 
-				// Using token signing algo : HMAC using SHA-512
-				.compact();}
-	
-	*/
-	// this method will be invoked by our custom JWT filter
-		public String getUserNameFromJwtToken(Claims claims) {
-			return claims.getSubject();
-		}
+    // Convert GrantedAuthority collection to comma-separated string
+    private String getAuthoritiesInString(Collection<? extends GrantedAuthority> authorities) {
+        return authorities.stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(","));
+    }
 
-		// this method will be invoked by our custom JWT filter
-		public Claims validateJwtToken(String jwtToken) {
-			// try {
-			Claims claims = Jwts.parserBuilder() //create JWT parser
-					.setSigningKey(key) //sets the SAME secret key for JWT signature verification
-					.build()//rets the JWT parser set with the Key
-					.parseClaimsJws(jwtToken) //rets JWT with Claims added in the body
-					.getBody();// rets the Claims
-			/*
-			 * parseClaimsJws - 
-			 * throws:UnsupportedJwtException -if the JWT body | payload does not represent any Claims 
-			 * JWSMalformedJwtException - if the JWT body | payload is not a valid 
-			 * JWSSignatureException - if the JWT signature validation fails
-			 * ExpiredJwtException - if the specified JWT is expired 
-			 * IllegalArgumentException - if the JWT claims body | payload is null or empty or only whitespace
-			 */
-			return claims;		
-		}
-		// Accepts Collection<GrantedAuthority> n rets comma separated list of it's
-		// string form
+    // Extract authorities from claims
+    public List<GrantedAuthority> getAuthoritiesFromClaims(Claims claims) {
+        String authString = (String) claims.get("authorities");
+        return AuthorityUtils.commaSeparatedStringToAuthorityList(authString);
+    }
 
-		private String getAuthoritiesInString(Collection<? extends GrantedAuthority> authorities) {
-			String authorityString = authorities.stream().
-					map(authority -> authority.getAuthority())
-					.collect(Collectors.joining(","));
-			System.out.println(authorityString);
-			return authorityString;
-		}
-		// this method will be invoked by our custom JWT filter to get list of granted authorities n store it in auth token
-			public List<GrantedAuthority> getAuthoritiesFromClaims(Claims claims) {
-			String authString = (String) claims.get("authorities");
-			List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(authString);
-			authorities.forEach(System.out::println);
-			return authorities;
-		}
-		// this method will be invoked by our custom JWT filter to get user id n store it in auth token
-				public Long getUserIdFromJwtToken(Claims claims) {
-					return Long.valueOf((int)claims.get("user_id"));			
-				}
-				
-				public Authentication populateAuthenticationTokenFromJWT(String jwt) {
-					// validate JWT n retrieve JWT body (claims)
-					Claims payloadClaims = validateJwtToken(jwt);
-					// get user name from the claims
-					String email = getUserNameFromJwtToken(payloadClaims);
-					// get granted authorities as a custom claim
-					List<GrantedAuthority> authorities = getAuthoritiesFromClaims(payloadClaims);
-					// get userId as the custom claim		
-					Long userId=getUserIdFromJwtToken(payloadClaims);
-					// add user name/email , user id n  granted authorities in Authentication object
-					UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email,userId,
-							authorities);
-					System.out.println("is authenticated "+token.isAuthenticated());
-					return token;
-			
-				}
+    // Extract user ID based on the role from claims
+    public Long getUserIdFromJwtToken(Claims claims) {
+        return Long.valueOf((int) claims.get("user_id"));
+    }
 
+    // Determine the user ID based on the user's role
+    private Long getUserIdFromUserRole(CustomUserDetails userPrincipal) {
+        switch (userPrincipal.getUser().getRole()) {
+            case FARMER:
+                return ((Farmer) userPrincipal.getUser()).getFarmerId();
+            case MERCHANT:
+                return ((Merchant) userPrincipal.getUser()).getMerchantId();
+            case WORKER:
+                return ((Worker) userPrincipal.getUser()).getWorkerId();
+            case DOCTOR:
+                return ((Doctor) userPrincipal.getUser()).getDoctorId();
+            default:
+                throw new IllegalArgumentException("Unexpected role: " + userPrincipal.getUser().getRole());
+        }
+    }
+
+    // Populate Authentication token from JWT
+    public Authentication populateAuthenticationTokenFromJWT(String jwt) {
+        Claims claims = validateJwtToken(jwt);
+        String username = getUserNameFromJwtToken(claims);
+        List<GrantedAuthority> authorities = getAuthoritiesFromClaims(claims);
+        Long userId = getUserIdFromJwtToken(claims);
+
+        return new UsernamePasswordAuthenticationToken(username, userId, authorities);
+    }
 }

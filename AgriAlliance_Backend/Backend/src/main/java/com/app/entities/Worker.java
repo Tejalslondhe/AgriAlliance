@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.app.enums.Crop;
+import com.app.enums.Role;
 import com.app.enums.Skill;
 
 import lombok.AllArgsConstructor;
@@ -27,12 +28,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Worker extends BaseEntity {
+public class Worker extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long workerId;
-
+    
     private Integer noOfGroupMembers;
 
     @Enumerated(EnumType.STRING)
@@ -43,6 +44,9 @@ public class Worker extends BaseEntity {
 
     @OneToMany(mappedBy = "worker")
     private List<InstrumentBooking> instrumentBookings;
+    
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.WORKER;
 
    
 }

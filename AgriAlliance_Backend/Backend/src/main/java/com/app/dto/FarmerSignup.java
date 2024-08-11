@@ -1,6 +1,9 @@
 package com.app.dto;
 
-import com.app.enums.Specialization;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import com.app.enums.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -15,9 +18,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class UserSignup extends BaseSignup{
+public class FarmerSignup extends BaseSignup{
 	
 	@JsonProperty(access = Access.READ_ONLY) // this property only used during ser.
-	private Long userId;
+	private Long farmerId;
 
+	@Enumerated(EnumType.STRING)
+    private Role role=Role.FARMER;
 }

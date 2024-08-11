@@ -1,6 +1,6 @@
 package com.app.dto;
 
-public class AddressDTO {
+public class AddressDto {
 	
 	private Long id;
 		

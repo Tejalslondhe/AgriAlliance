@@ -1,5 +1,6 @@
 package com.app.security;
 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -7,35 +8,111 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.app.entities.Doctor;
+import com.app.entities.Farmer;
+import com.app.entities.Merchant;
+import com.app.entities.User;
+import com.app.entities.Worker;
+
+public class CustomUserDetails implements UserDetails {
+
+    private final User user;
+
+    public CustomUserDetails(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Convert the role to SimpleGrantedAuthority
+        return List.of(new SimpleGrantedAuthority(user.getRole().name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return user.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        return user.getEmail();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public User getUser() {
+        return user;
+    }
+    
+    public Long getUserId() {
+        if (user instanceof Farmer) {
+            return ((Farmer) user).getFarmerId();
+        } else if (user instanceof Worker) {
+            return ((Worker) user).getWorkerId();
+        } else if (user instanceof Merchant) {
+            return ((Merchant) user).getMerchantId();
+        } else if (user instanceof Doctor) {
+            return ((Doctor) user).getDoctorId();
+        }
+        throw new IllegalStateException("Unknown user type");
+    }
+}
+
+/*import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.app.entities.Farmer;
 import com.app.entities.User;
 
 public class CustomUserDetails implements UserDetails{
 	
-	private User user;
+	private Farmer farmer;
 
 	public CustomUserDetails(User user) {
 		super();
-		this.user = user;
+		this.farmer = farmer;
 	}
 
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 	    // Convert userId to String and use it with SimpleGrantedAuthority
-	    return List.of(new SimpleGrantedAuthority(user.getUserId().toString()));
+	    return List.of(new SimpleGrantedAuthority(farmer.getFarmerId().toString()));
 	}
 
 
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return user.getPassword();
+		return farmer.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return user.getEmail();
+		return farmer.getEmail();
 	}
 
 	@Override
@@ -62,11 +139,10 @@ public class CustomUserDetails implements UserDetails{
 		return true;
 	}
 	
-	public User getUser() {
-		return user;
-	}
+	public Farmer getFarmer() {
+		return farmer;
+	}*/
 	
 	
 	
 
-}

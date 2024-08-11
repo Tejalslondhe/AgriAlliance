@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.app.enums.Crop;
+import com.app.enums.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,13 +24,17 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Merchant extends BaseEntity {
+public class Merchant extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long merchantId;
+    
 
     @Enumerated(EnumType.STRING)
     private Crop crop;
+    
+    @Enumerated(EnumType.STRING)
+    private Role role=Role.MERCHANT;
 
 }

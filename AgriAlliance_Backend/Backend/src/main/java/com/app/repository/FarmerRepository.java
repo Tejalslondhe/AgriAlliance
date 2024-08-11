@@ -4,11 +4,11 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.app.entities.User;
+import com.app.entities.Farmer;
 
-public interface UserRepository extends JpaRepository<User,Long>{
+public interface FarmerRepository extends JpaRepository<Farmer,Long>{
 	
-	Optional<User> findByEmail(String email);
+	Optional<Farmer> findByEmail(String email);
 	//derived query metho
 	boolean existsByEmail(String email);
 	

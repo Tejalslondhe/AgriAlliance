@@ -3,9 +3,8 @@ package com.app.dto;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+import com.app.entities.Address;
 import com.app.enums.Role;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,17 +14,27 @@ import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class MerchantSignup extends BaseSignup{
-	
-	@JsonProperty(access = Access.READ_ONLY) // this property only used during ser.
-	private Long merchantId;
+public class FarmerDto {
 
-   // private Crop crop;
+	private Long farmerId;
+
+	private String firstName;
+
+	private String lastName;
+
+	private String email;
+
+	private String password;
+
+	private String contactNumber;
+
+	private String aadharNo;
+
+	private Address address;
 	
 	@Enumerated(EnumType.STRING)
-    private Role role=Role.MERCHANT;
-
+    private Role role;
 }

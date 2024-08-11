@@ -29,6 +29,8 @@ public class BaseSignup {
 	
 	private String aadharNo;
 	
-	private AddressDTO address;
+	
+	
+	//private AddressDTO address;
 
 }

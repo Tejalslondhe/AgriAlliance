@@ -24,11 +24,11 @@ public class MerchantController {
 	@Autowired
 	private MerchantService merchantService;
 	
-	@PostMapping
-	public MerchantDto add(@RequestBody MerchantDto newMerchant)
-	{
-		return merchantService.addNewMerchant(newMerchant);
-	}
+//	@PostMapping
+//	public MerchantDto add(@RequestBody MerchantDto newMerchant)
+//	{
+//		return merchantService.addNewMerchant(newMerchant);
+//	}
 	
 	@GetMapping
 	public List<MerchantDto> display()

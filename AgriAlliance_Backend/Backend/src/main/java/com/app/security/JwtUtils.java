@@ -40,27 +40,7 @@ public class JwtUtils {
         // Generate a secure key for HS512
         key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
     }
-
-    // Generate JWT token for the authenticated user
-   /* public String generateJwtToken(Authentication authentication) {
-        log.info("Generating JWT token for authentication: " + authentication);
-
-        CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
-        String username = userPrincipal.getUsername();
-        String role = userPrincipal.getUser().getRole().name();
-        Long userId = getUserIdFromUserRole(userPrincipal);
-
-        return Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime() + jwtExpirationMs))
-                .claim("authorities", getAuthoritiesInString(userPrincipal.getAuthorities()))
-                .claim("user_id", userId)
-                .claim("role", role)
-                .signWith(key, SignatureAlgorithm.HS512)
-                .compact();
-    }*/
-    
+   
     public String generateJwtToken(Authentication authentication) {
         CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
         return Jwts.builder()
@@ -74,7 +54,7 @@ public class JwtUtils {
     }
 
 
-<<<<<<< HEAD
+
     // Extract username from JWT token
     public String getUserNameFromJwtToken(Claims claims) {
         return claims.getSubject();
@@ -100,13 +80,6 @@ public class JwtUtils {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
     }
-=======
-
-	// this method will be invoked by our custom JWT filter
-		public String getUserNameFromJwtToken(Claims claims) {
-			return claims.getSubject();
-		}
->>>>>>> 8ca407d31f1d0e6511aa7659dc3571b9ce854503
 
     // Extract authorities from claims
     public List<GrantedAuthority> getAuthoritiesFromClaims(Claims claims) {

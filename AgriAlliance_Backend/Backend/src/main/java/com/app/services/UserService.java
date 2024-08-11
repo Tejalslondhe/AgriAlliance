@@ -1,10 +1,11 @@
 package com.app.services;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
+import com.app.custom_exception.InvalidCredentialsException;
 import com.app.entities.Doctor;
 import com.app.entities.Farmer;
 import com.app.entities.Merchant;
@@ -18,27 +19,6 @@ import com.app.repository.WorkerRepository;
 
 @Service
 public class UserService {
-=======
-import com.app.custom_exception.InvalidCredentialsException;
-import com.app.dto.UserSignup;
-import com.app.dto.UsersDTO;
-
-@Service
-public interface UserService {
-
-	// add signup method
-	UserSignup userRegistration(UserSignup reqDTO);
-
-	UsersDTO addNewUser(UsersDTO newUser) throws InvalidCredentialsException;
-
-	List<UsersDTO> displayAllUers();
-
-	void deleteUser(Long id);
-
-	UsersDTO updateUser(Long userId, UsersDTO updateUser);
-
-	UsersDTO getUserById(Long userId);
->>>>>>> 8ca407d31f1d0e6511aa7659dc3571b9ce854503
 
     private final FarmerRepository farmerRepository;
     private final WorkerRepository workerRepository;

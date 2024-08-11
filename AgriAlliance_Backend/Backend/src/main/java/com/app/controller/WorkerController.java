@@ -13,13 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
-import com.app.dto.FarmerDto;
-=======
-import com.app.dto.UsersDTO;
->>>>>>> 8ca407d31f1d0e6511aa7659dc3571b9ce854503
 import com.app.dto.WorkerDto;
-import com.app.entities.Worker;
 import com.app.services.WorkerService;
 @RestController
 @RequestMapping("/workers")
@@ -29,12 +23,6 @@ public class WorkerController {
 		
 		@Autowired
 		private WorkerService workerService;
-		
-		@PostMapping
-		public WorkerDto add(@RequestBody WorkerDto workerDto)
-		{
-			return workerService.addNewWorker(workerDto);
-		}
 		
 		@GetMapping
 		public List<WorkerDto> display()

@@ -28,19 +28,7 @@ public class FarmerController {
 	
 	@Autowired
 	private FarmerService farmerService;
-	
-	@PostMapping("/signup")
-    public ResponseEntity<?> farmerSignup(@RequestBody @Valid FarmerSignup dto) {
-        System.out.println("in farmer sign up " + dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(farmerService.farmerRegistration(dto));
-    }
-	
-	@PostMapping
-	public FarmerDto add(@RequestBody FarmerDto farmerdto)
-	{
-		return farmerService.addNewFarmer(farmerdto);
-	}
-	
+		
 	@GetMapping
 	public List<FarmerDto> display()
 	{

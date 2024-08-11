@@ -14,8 +14,6 @@ public interface FarmerService {
 	// add signup method
 	FarmerSignup farmerRegistration(FarmerSignup reqDTO);
 
-	FarmerDto addNewFarmer(FarmerDto newFarmer) throws InvalidCredentialsException;
-
 	List<FarmerDto> displayAllFarmers();
 
 	void deleteFarmer(Long id);

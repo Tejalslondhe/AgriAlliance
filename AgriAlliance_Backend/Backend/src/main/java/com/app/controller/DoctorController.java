@@ -23,13 +23,6 @@ public class DoctorController {
 	@Autowired
 	private DoctorService doctorService;
 	
-	
-	@PostMapping
-	public DoctorDto add(@RequestBody DoctorDto doctor)
-	{
-		return doctorService.addNewDoctor(doctor);
-	}
-	
 	@GetMapping
 	public List<DoctorDto> display()
 	{

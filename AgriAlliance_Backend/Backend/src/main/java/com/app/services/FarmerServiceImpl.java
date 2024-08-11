@@ -40,16 +40,6 @@ public class FarmerServiceImpl implements FarmerService {
 		return mapper.map(farmerDao.save(farmer), FarmerSignup.class);
 	}
 
-	@Override
-	public FarmerDto addNewFarmer(FarmerDto newFarmer) throws InvalidCredentialsException {
-        Farmer farmer=mapper.map(newFarmer,Farmer.class);
-     // Handling Address as a possible detached entity
-        if (farmer.getAddress() != null) {
-        	farmer.getAddress().setId(null); // Ensures a new Address is created
-        }
-       Farmer savedUser= farmerDao.save(farmer);
-        return mapper.map(savedUser, FarmerDto.class);
-	}
 
 	@Override
 	public List<FarmerDto> displayAllFarmers() {

@@ -74,6 +74,7 @@ public class JwtUtils {
     }
 
 
+<<<<<<< HEAD
     // Extract username from JWT token
     public String getUserNameFromJwtToken(Claims claims) {
         return claims.getSubject();
@@ -99,6 +100,13 @@ public class JwtUtils {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
     }
+=======
+
+	// this method will be invoked by our custom JWT filter
+		public String getUserNameFromJwtToken(Claims claims) {
+			return claims.getSubject();
+		}
+>>>>>>> 8ca407d31f1d0e6511aa7659dc3571b9ce854503
 
     // Extract authorities from claims
     public List<GrantedAuthority> getAuthoritiesFromClaims(Claims claims) {

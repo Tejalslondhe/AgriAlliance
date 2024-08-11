@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,17 @@ import com.app.custom_exception.ResourceNotFoundException;
 import com.app.dto.DoctorDto;
 import com.app.dto.DoctorSignup;
 import com.app.entities.Doctor;
+=======
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.app.custom_exception.InvalidCredentialsException;
+import com.app.custom_exception.ResourceNotFoundException;
+import com.app.dto.DoctorDto;
+import com.app.dto.MerchantDto;
+import com.app.entities.Doctor;
+import com.app.entities.Merchant;
+>>>>>>> 8ca407d31f1d0e6511aa7659dc3571b9ce854503
 import com.app.repository.DoctorRepository;
 
 @Service
@@ -27,6 +39,7 @@ public class DoctorServiceImpl implements DoctorService {
 	@Autowired
 	private ModelMapper mapper;
 	
+<<<<<<< HEAD
 	@Autowired
 	private PasswordEncoder encoder;
 	
@@ -44,6 +57,8 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 
 	
+=======
+>>>>>>> 8ca407d31f1d0e6511aa7659dc3571b9ce854503
 	
 	@Override
 	public DoctorDto addNewDoctor(DoctorDto newDoctor) throws InvalidCredentialsException {

@@ -28,7 +28,11 @@ public class MerchantServiceImpl implements MerchantService {
 	@Autowired
 	private PasswordEncoder encoder;
 
+<<<<<<< HEAD
 	@Override
+=======
+	/*@Override
+>>>>>>> 8ca407d31f1d0e6511aa7659dc3571b9ce854503
 	public MerchantSignup merchantRegistration(MerchantSignup reqDTO) {
 		Merchant merchant = mapper.map(reqDTO, Merchant.class);
 		if (merchantDao.existsByEmail(reqDTO.getEmail()))
@@ -37,7 +41,11 @@ public class MerchantServiceImpl implements MerchantService {
 		merchant.setPassword(encoder.encode(merchant.getPassword()));
 		return mapper.map(merchantDao.save(merchant), MerchantSignup.class);
 
+<<<<<<< HEAD
 	}
+=======
+	}*/
+>>>>>>> 8ca407d31f1d0e6511aa7659dc3571b9ce854503
 	
 	@Override
 	public MerchantDto addNewMerchant(MerchantDto newMerchant) throws InvalidCredentialsException {

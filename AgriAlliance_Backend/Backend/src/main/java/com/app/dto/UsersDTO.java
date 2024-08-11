@@ -1,14 +1,6 @@
 package com.app.dto;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 import com.app.entities.Address;
-import com.app.enums.Crop;
-<<<<<<< HEAD
-import com.app.enums.Role;
-=======
->>>>>>> 8ca407d31f1d0e6511aa7659dc3571b9ce854503
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,9 +13,9 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class MerchantDto {
+public class UsersDTO {
 
-	private Long merchantId;
+	private Long userId;
 
 	private String firstName;
 
@@ -38,14 +30,4 @@ public class MerchantDto {
 	private String aadharNo;
 
 	private Address address;
-
-	@Enumerated(EnumType.STRING)
-	private Crop crop;
-<<<<<<< HEAD
-	
-	@Enumerated(EnumType.STRING)
-    private Role role;
-=======
->>>>>>> 8ca407d31f1d0e6511aa7659dc3571b9ce854503
-
 }

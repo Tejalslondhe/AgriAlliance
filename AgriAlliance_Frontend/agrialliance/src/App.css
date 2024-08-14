@@ -1,38 +1,126 @@
-.App {
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header */
+.header {
+  background-color: #333;
+  padding: 15px;
+}
+
+.header nav ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header nav ul li a {
+  color: white;
+  font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  color: white;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.hero .carousel-item {
+  height: 500px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.hero .carousel-item img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.carousel-caption h1 {
+  font-size: 48px;
+}
+
+.carousel-caption p {
+  font-size: 24px;
+}
+
+/* Section Styles */
+.section {
   display: flex;
-  flex-direction: column;
+  padding: 50px;
+  background-color: #f4f4f4;
+}
+
+.section-content {
+  display: flex;
+  width: 100%;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.section-image {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+}
+
+.section-text {
+  padding: 20px;
+  width: 50%;
+}
+
+.section-text h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.section-text p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.signin-btn, .signup-btn {
+  padding: 10px 20px;
+  font-size: 16px;
   color: white;
+  background-color: #333;
+  border: none;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.signin-btn:hover, .signup-btn:hover {
+  background-color: #555;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Footer Styles */
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.services h3 {
+  margin-bottom: 15px;
+}
+
+.services ul {
+  padding-left: 0;
 }

@@ -1,12 +1,23 @@
 import React from 'react';
+import '../styles/AboutUs.css';
 
-function AboutUs() {
+const AboutUs = () => {
     return (
-        <div>
-            <h1>About Us</h1>
-            <p>We are dedicated to connecting farmers, workers, merchants, and doctors within the agriculture industry.</p>
+        <div className="about-us">
+            <div className="about-us-content">
+                <h2>About AgriAlliance</h2>
+                <p>
+                    AgriAlliance is a comprehensive web platform designed to streamline agricultural operations by offering
+                    services such as worker and merchant registration, import/export facilitation, agricultural instrument
+                    rentals, and crop doctor consultations.
+                </p>
+                <p>
+                    It aims to enhance connectivity, optimize resource utilization, and expand market reach for farmers and
+                    merchants, thereby improving productivity and sustainability in the agricultural sector.
+                </p>
+            </div>
         </div>
     );
-}
+};
 
 export default AboutUs;

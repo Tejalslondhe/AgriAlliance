@@ -18,7 +18,9 @@ import org.springframework.stereotype.Component;
 import com.app.entities.Doctor;
 import com.app.entities.Farmer;
 import com.app.entities.Merchant;
+import com.app.entities.User;
 import com.app.entities.Worker;
+import com.app.enums.Role;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -109,12 +111,30 @@ public class JwtUtils {
     }
 
     // Populate Authentication token from JWT
-    public Authentication populateAuthenticationTokenFromJWT(String jwt) {
+ /*   public Authentication populateAuthenticationTokenFromJWT(String jwt) {
         Claims claims = validateJwtToken(jwt);
         String username = getUserNameFromJwtToken(claims);
         List<GrantedAuthority> authorities = getAuthoritiesFromClaims(claims);
         Long userId = getUserIdFromJwtToken(claims);
 
         return new UsernamePasswordAuthenticationToken(username, userId, authorities);
+    }*/
+    
+    
+    public Authentication populateAuthenticationTokenFromJWT(String jwt) {
+        Claims claims = validateJwtToken(jwt);
+        String username = getUserNameFromJwtToken(claims);
+        List<GrantedAuthority> authorities = getAuthoritiesFromClaims(claims);
+        Long userId = getUserIdFromJwtToken(claims);
+
+        // Create a dummy user or fetch user details if needed
+        User user = new User();
+        user.setEmail(username);
+        user.setRole(Role.valueOf(authorities.get(0).getAuthority())); // Assuming role enum is the first authority
+        
+        CustomUserDetails userDetails = new CustomUserDetails(user);
+
+        return new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
     }
+
 }

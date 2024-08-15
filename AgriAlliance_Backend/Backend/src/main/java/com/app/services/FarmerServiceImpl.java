@@ -9,11 +9,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.app.custom_exception.ApiException;
-import com.app.custom_exception.InvalidCredentialsException;
 import com.app.custom_exception.ResourceNotFoundException;
 import com.app.dto.FarmerDto;
 import com.app.dto.FarmerSignup;
 import com.app.entities.Farmer;
+import com.app.enums.Role;
 import com.app.repository.FarmerRepository;
 
 @Service
@@ -37,6 +37,7 @@ public class FarmerServiceImpl implements FarmerService {
 			throw new ApiException("Email already exist !");
 		
 		farmer.setPassword(encoder.encode(farmer.getPassword()));
+		farmer.setRole(Role.FARMER); 
 		return mapper.map(farmerDao.save(farmer), FarmerSignup.class);
 	}
 

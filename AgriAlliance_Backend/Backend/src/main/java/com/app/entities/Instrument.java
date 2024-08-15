@@ -32,7 +32,7 @@ public class Instrument {
 
     private String name;
     private String type;
-    private String availabilityStatus;
+    private boolean availabilityStatus;
     private Double ratePerDay;
 
     @OneToMany(mappedBy = "instrument")

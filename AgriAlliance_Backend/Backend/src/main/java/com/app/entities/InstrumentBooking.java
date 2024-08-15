@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,6 +43,9 @@ public class InstrumentBooking {
     @JoinColumn(name = "worker_id")
     private Worker worker;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate bookingDate;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
 }

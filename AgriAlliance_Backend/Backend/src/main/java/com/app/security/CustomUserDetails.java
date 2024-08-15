@@ -76,73 +76,7 @@ public class CustomUserDetails implements UserDetails {
     }
 }
 
-/*import java.util.Collection;
-import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import com.app.entities.Farmer;
-import com.app.entities.User;
-
-public class CustomUserDetails implements UserDetails{
-	
-	private Farmer farmer;
-
-	public CustomUserDetails(User user) {
-		super();
-		this.farmer = farmer;
-	}
-
-	
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-	    // Convert userId to String and use it with SimpleGrantedAuthority
-	    return List.of(new SimpleGrantedAuthority(farmer.getFarmerId().toString()));
-	}
-
-
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return farmer.getPassword();
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return farmer.getEmail();
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	
-	public Farmer getFarmer() {
-		return farmer;
-	}*/
-	
 	
 	
 

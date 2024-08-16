@@ -1,0 +1,58 @@
+/* Style for the header navigation bar */
+.custom-navbar {
+  background-color: #000; /* Black background for the navbar */
+}
+
+.navbar-brand {
+  color: #fff; /* White color for the brand name */
+  font-size: 1.8rem; /* Larger font size for the brand name */
+  font-weight: bold; /* Bold font for the brand name */
+}
+
+.navbar-brand:hover {
+  color: #fff; /* Maintain the same color on hover */
+}
+
+.navbar-nav {
+  display: flex;
+  margin-left: auto; /* Push the nav items to the right */
+}
+
+.navbar-nav .nav-link {
+  color: #fff; /* White color for the nav links */
+  font-size: 1rem; /* Font size for the nav links */
+  margin: 0 1rem; /* Horizontal spacing between links */
+  font-weight: bold; /* Bold font for nav links */
+  transition: none; /* Remove transition effect */
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #fff; /* Ensure the link color remains white on hover and when active */
+}
+
+.navbar-toggler {
+  border-color: #fff; /* White border color for the toggler button */
+}
+
+.navbar-toggler-icon {
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"%3E%3Cpath stroke="%23fff" stroke-width="2" d="M5 7h20M5 15h20M5 23h20" /%3E%3C/svg%3E'); /* Custom white icon for the toggler button */
+}
+
+.collapse.navbar-collapse {
+  display: flex;
+  justify-content: flex-end; /* Align the links to the right */
+}
+
+@media (max-width: 991px) {
+  .navbar-nav {
+    margin-top: 1rem; /* Add margin on top when the menu is collapsed */
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-nav .nav-link {
+    font-size: 1.2rem; /* Larger font size for mobile screens */
+    margin: 0.5rem 0; /* Vertical spacing for mobile screens */
+  }
+}

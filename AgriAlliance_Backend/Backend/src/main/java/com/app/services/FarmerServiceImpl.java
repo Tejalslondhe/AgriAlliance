@@ -20,7 +20,7 @@ import com.app.repository.FarmerRepository;
 public class FarmerServiceImpl implements FarmerService {
 
 	@Autowired
-	private FarmerRepository farmerDao;
+	private FarmerRepository farmerRepository;
 	
 	@Autowired
 	private ModelMapper mapper;
@@ -33,38 +33,38 @@ public class FarmerServiceImpl implements FarmerService {
 		
 		Farmer farmer = mapper.map(reqDTO,Farmer.class);
 		
-		if(farmerDao.existsByEmail(reqDTO.getEmail()))
+		if(farmerRepository.existsByEmail(reqDTO.getEmail()))
 			throw new ApiException("Email already exist !");
 		
 		farmer.setPassword(encoder.encode(farmer.getPassword()));
 		farmer.setRole(Role.FARMER); 
-		return mapper.map(farmerDao.save(farmer), FarmerSignup.class);
+		return mapper.map(farmerRepository.save(farmer), FarmerSignup.class);
 	}
 
 
 	@Override
 	public List<FarmerDto> displayAllFarmers() {
 
-		List<Farmer> farmer=farmerDao.findAll();
+		List<Farmer> farmer=farmerRepository.findAll();
 		return farmer.stream().map(user->mapper.map(user, FarmerDto.class)).collect(Collectors.toList());
 
 	}
 
 	@Override
 	public void deleteFarmer(Long id) {
-		  Farmer farmer = farmerDao.findById(id).orElseThrow(() -> new RuntimeException("Farmer not found"));
-		  farmerDao.delete(farmer);
+		  Farmer farmer = farmerRepository.findById(id).orElseThrow(() -> new RuntimeException("Farmer not found"));
+		  farmerRepository.delete(farmer);
 	}
 
 	@Override
 	public FarmerDto updateFarmer(Long farmerId, FarmerDto updateFarmer) {
 
-		Farmer farmer=farmerDao.findById(farmerId)
+		Farmer farmer=farmerRepository.findById(farmerId)
 				.orElseThrow(()-> new ResourceNotFoundException("Farmer not found with ID: " + farmerId));
 		
 		mapper.map(updateFarmer, farmer);
 		
-		farmer=farmerDao.save(farmer);
+		farmer=farmerRepository.save(farmer);
 		
 		return mapper.map(farmer, FarmerDto.class);
 	
@@ -72,10 +72,28 @@ public class FarmerServiceImpl implements FarmerService {
 
 	@Override
 	public FarmerDto getFarmerById(Long farmerId) {
-		Farmer farmer=farmerDao.findById(farmerId).orElseThrow(()-> new ResourceNotFoundException("Farmer not found"));
+		Farmer farmer=farmerRepository.findById(farmerId).orElseThrow(()-> new ResourceNotFoundException("Farmer not found"));
 		
 		return mapper.map(farmer, FarmerDto.class);
 	}
+	
+	@Override
+    public void deleteFarmerByEmail(String email) {
+        Farmer farmer = farmerRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("Farmer not found with email: " + email));
+        farmerRepository.delete(farmer);
+    }
+
+    @Override
+    public FarmerDto updateFarmerByEmail(String email, FarmerDto updateFarmer) {
+        Farmer farmer = farmerRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("Farmer not found with email: " + email));
+
+        mapper.map(updateFarmer, farmer);
+        farmer = farmerRepository.save(farmer);
+        
+        return mapper.map(farmer, FarmerDto.class);
+    }
 	
 	
 	

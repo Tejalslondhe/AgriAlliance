@@ -1,62 +1,48 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import '../styles/Header.css'
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Auth/AuthContext';
+import '../styles/Header.css';
 
-function Header() {
+const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  // Handle login click to redirect to role selection
+  const handleLoginClick = () => {
+    navigate('/role-selection');
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg custom-navbar">
-      <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">
-          AgriAlliance
-        </NavLink>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/">
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/farmers">
-                Farmers
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/merchants">
-                Merchants
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/workers">
-                Workers
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/agronomists">
-                Agronomists
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/contact">
-                Contact Us
-              </NavLink>
-            </li>
-          </ul>
-        </div>
+    <header className="header">
+      <div className="header-left">
+        <h1 className="title">AgriAlliance</h1>
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/about-us">About Us</Link>
+          <Link to="/contact-us">Contact Us</Link>
+          <Link to="/faq">FAQ</Link>
+        </nav>
       </div>
-    </nav>
+      <div className="header-right">
+        {!user ? (
+          <>
+            <button onClick={handleLoginClick}>Login</button>
+            <Link to="/register">Register</Link>
+          </>
+        ) : (
+          <>
+            <span className="user-info">Welcome, {user.name}</span>
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        )}
+      </div>
+    </header>
   );
-}
+};
 
 export default Header;

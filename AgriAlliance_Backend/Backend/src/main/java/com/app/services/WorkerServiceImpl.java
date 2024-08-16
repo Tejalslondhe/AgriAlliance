@@ -22,7 +22,7 @@ import com.app.repository.WorkerRepository;
 public class WorkerServiceImpl implements WorkerService {
 
 	@Autowired
-	private WorkerRepository workerDao;
+	private WorkerRepository workerRepository;
 	
 	@Autowired
 	private ModelMapper mapper;
@@ -35,44 +35,58 @@ public class WorkerServiceImpl implements WorkerService {
 	public WorkerSignup workerRegistration(WorkerSignup reqDTO) {
 	    Worker worker = mapper.map(reqDTO, Worker.class);
 
-	    if (workerDao.existsByEmail(reqDTO.getEmail())) {
+	    if (workerRepository.existsByEmail(reqDTO.getEmail())) {
 	        throw new ApiException("Email already exists!");
 	    }
 
 	    worker.setPassword(encoder.encode(worker.getPassword()));
-	    return mapper.map(workerDao.save(worker), WorkerSignup.class);
+	    return mapper.map(workerRepository.save(worker), WorkerSignup.class);
 	}
 
 	@Override
 	public List<WorkerDto> displayAllWorkers() {
-		List<Worker> workers=workerDao.findAll();
+		List<Worker> workers=workerRepository.findAll();
 		return workers.stream().map(worker->mapper.map(worker, WorkerDto.class)).collect(Collectors.toList());
 
 	}
 
 	@Override
 	public void deleteWorker(Long id) {
-		Worker worker = workerDao.findById(id).orElseThrow(() -> new RuntimeException("Worker not found"));
-		workerDao.delete(worker);		
+		Worker worker = workerRepository.findById(id).orElseThrow(() -> new RuntimeException("Worker not found"));
+		workerRepository.delete(worker);		
 	}
 
 	@Override
 	public WorkerDto updateWorker(Long workerId, WorkerDto updateWorker) {
-		Worker worker=workerDao.findById(workerId)
+		Worker worker=workerRepository.findById(workerId)
 				.orElseThrow(()-> new ResourceNotFoundException("Worker not found with ID: " + workerId));
 		
 		mapper.map(updateWorker, worker);
 		
-		worker=workerDao.save(worker);
+		worker=workerRepository.save(worker);
 		
 		return mapper.map(worker, WorkerDto.class);
 	}
 
+	
+	
 	@Override
-	public WorkerDto getWorkerById(Long workerId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public void deleteWorkerByEmail(String email) {
+        Worker worker = workerRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("Worker not found with email: " + email));
+        workerRepository.delete(worker);
+    }
+
+    @Override
+    public WorkerDto updateWorkerByEmail(String email, WorkerDto updateWorker) {
+        Worker worker = workerRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("Worker not found with email: " + email));
+
+        mapper.map(updateWorker, worker);
+        worker = workerRepository.save(worker);
+        
+        return mapper.map(worker, WorkerDto.class);
+    }
 	
 	
 

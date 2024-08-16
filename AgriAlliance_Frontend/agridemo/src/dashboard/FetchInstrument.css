@@ -1,0 +1,72 @@
+/* FetchInstruments.css */
+
+.fetch-instruments-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.instruments-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.instrument-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 250px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.instrument-card:hover {
+  transform: scale(1.05);
+}
+
+.instrument-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.2em;
+  color: #007bff;
+}
+
+.instrument-card p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.book-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.book-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.book-button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.error {
+  color: #dc3545;
+  text-align: center;
+  margin: 10px 0;
+}

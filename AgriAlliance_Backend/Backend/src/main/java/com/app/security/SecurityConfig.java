@@ -30,12 +30,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors()
-            .and()
+        http.cors().disable()
             .csrf().disable()
-            .exceptionHandling()
-            .authenticationEntryPoint(customAuthenticationEntryPoint)
-            .and()
+           // .exceptionHandling()
+           // .authenticationEntryPoint(customAuthenticationEntryPoint)
+           // .and()
             .authorizeRequests()
             .antMatchers("/auth/farmers/signup", "/auth/merchants/signup", "/auth/workers/signup", "/auth/doctors/signup", "/auth/signin",
                   "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
@@ -43,6 +42,9 @@ public class SecurityConfig {
             .antMatchers("/doctors/**").hasAuthority("DOCTOR")
             .antMatchers("/merchants/**").hasAuthority("MERCHANT")
             .antMatchers("/workers/**").hasAuthority("WORKER")
+            .antMatchers("/workers/all").hasAuthority("FARMER")
+            .antMatchers("/merchants/all").hasAuthority("FARMER")
+            .antMatchers("/doctors/all").hasAuthority("FARMER")
             .antMatchers("/bookings/f/**").permitAll()
             .antMatchers("/instruments/**").permitAll()
             .antMatchers(HttpMethod.OPTIONS).permitAll()

@@ -42,9 +42,6 @@ public class Worker extends User {
     @Enumerated(EnumType.STRING)
     private Crop crop;
 
-    @OneToMany(mappedBy = "worker")
-    private List<InstrumentBooking> instrumentBookings;
-    
     @Enumerated(EnumType.STRING)
     private Role role = Role.WORKER;
 

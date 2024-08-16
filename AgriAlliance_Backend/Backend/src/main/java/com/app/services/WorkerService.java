@@ -17,5 +17,7 @@ public interface WorkerService {
 	
 	WorkerDto updateWorker(Long workerId, WorkerDto updateWorker);
 	
-	WorkerDto getWorkerById(Long workerId);
+	WorkerDto updateWorkerByEmail(String email, WorkerDto updateWorker);
+    
+	void deleteWorkerByEmail(String email);
 }

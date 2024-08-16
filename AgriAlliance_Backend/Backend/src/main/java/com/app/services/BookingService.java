@@ -25,13 +25,13 @@ public class BookingService {
     @Autowired
     private FarmerRepository farmerRepository;
 
-    public InstrumentBooking bookInstrument(Long instrumentId, Long farmerId, LocalDate bookingDate, LocalDate returnDate) {
+    public InstrumentBooking bookInstrument(Long instrumentId, String farmeremail, LocalDate bookingDate, LocalDate returnDate) {
         Optional<Instrument> instrumentOpt = instrumentRepository.findById(instrumentId);
         if (!instrumentOpt.isPresent()) {
             throw new RuntimeException("Instrument not found");
         }
 
-        Optional<Farmer> farmerOpt = farmerRepository.findById(farmerId);
+        Optional<Farmer> farmerOpt = farmerRepository.findByEmail(farmeremail);
         if (!farmerOpt.isPresent()) {
             throw new RuntimeException("Farmer not found");
         }
@@ -39,7 +39,6 @@ public class BookingService {
         InstrumentBooking booking = new InstrumentBooking();
         booking.setInstrument(instrumentOpt.get());
         booking.setFarmer(farmerOpt.get());
-        booking.setWorker(null); // Since only farmers can book
         booking.setBookingDate(bookingDate);
         booking.setReturnDate(returnDate);
 

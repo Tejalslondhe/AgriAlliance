@@ -13,4 +13,6 @@ public interface WorkerRepository extends JpaRepository<Worker, Long> {
 	//derived query metho
 
 	boolean existsByEmail(String email);
+	
+	void deleteByEmail(String email);
 }

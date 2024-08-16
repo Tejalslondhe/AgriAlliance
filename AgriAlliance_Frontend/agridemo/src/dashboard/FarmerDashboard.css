@@ -1,0 +1,70 @@
+.farmer-dashboard {
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.farmer-dashboard h2 {
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.farmer-dashboard .btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+
+.farmer-dashboard .btn-primary {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.farmer-dashboard .btn-primary:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.farmer-dashboard .btn-secondary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.farmer-dashboard .btn-secondary:hover {
+  background-color: #0069d9;
+  border-color: #0056b3;
+}
+
+.farmer-dashboard .btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.farmer-dashboard .btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.farmer-dashboard .row {
+  margin-bottom: 20px;
+}
+
+.farmer-dashboard .btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.farmer-dashboard .btn-success {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.farmer-dashboard .btn-success:hover {
+  background-color: #138496;
+  border-color: #117a8b;
+}

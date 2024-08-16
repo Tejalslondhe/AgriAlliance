@@ -22,7 +22,7 @@ import com.app.repository.DoctorRepository;
 public class DoctorServiceImpl implements DoctorService {
 
 	@Autowired
-	private DoctorRepository doctorDao;
+	private DoctorRepository doctorRepository;
 	
 	@Autowired
 	private ModelMapper mapper;
@@ -35,38 +35,56 @@ public class DoctorServiceImpl implements DoctorService {
 	public DoctorSignup doctorRegistration(DoctorSignup reqDTO) {
 	    Doctor doctor = mapper.map(reqDTO, Doctor.class);
 
-	    if (doctorDao.existsByEmail(reqDTO.getEmail())) {
+	    if (doctorRepository.existsByEmail(reqDTO.getEmail())) {
 	        throw new ApiException("Email already exists!");
 	    }
 
 	    doctor.setPassword(encoder.encode(doctor.getPassword()));
-	    return mapper.map(doctorDao.save(doctor), DoctorSignup.class);
+	    return mapper.map(doctorRepository.save(doctor), DoctorSignup.class);
 	}
 
 	@Override
 	public List<DoctorDto> displayAllDoctor() {
-		List<Doctor> doctors=doctorDao.findAll();
+		List<Doctor> doctors=doctorRepository.findAll();
 		return doctors.stream().map(doctor->mapper.map(doctor, DoctorDto.class)).collect(Collectors.toList());
 
 	}
 
 	@Override
 	public void deleteDoctor(Long id) {
-		Doctor doctor = doctorDao.findById(id).orElseThrow(() -> new RuntimeException("Doctor not found"));
-		doctorDao.delete(doctor);
+		Doctor doctor = doctorRepository.findById(id).orElseThrow(() -> new RuntimeException("Doctor not found"));
+		doctorRepository.delete(doctor);
 	}
 
 	@Override
 	public DoctorDto updateDoctor(Long id, DoctorDto updateDoctor) {
-		Doctor doctor=doctorDao.findById(id)
+		Doctor doctor=doctorRepository.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException("Merchant not found with ID: " + id));
 		
 		mapper.map(updateDoctor, doctor);
 		
-		doctor=doctorDao.save(doctor);
+		doctor=doctorRepository.save(doctor);
 		
 		return mapper.map(doctor, DoctorDto.class);
 	}
+	
+	@Override
+    public void deleteDoctorByEmail(String email) {
+        Doctor doctor = doctorRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("Doctor not found with email: " + email));
+        doctorRepository.delete(doctor);
+    }
+
+    @Override
+    public DoctorDto updateDoctorByEmail(String email, DoctorDto updateDoctor) {
+        Doctor doctor = doctorRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("Doctor not found with email: " + email));
+
+        mapper.map(updateDoctor, doctor);
+        doctor = doctorRepository.save(doctor);
+        
+        return mapper.map(doctor, DoctorDto.class);
+    }
 
 	
 }

@@ -39,9 +39,6 @@ public class InstrumentBooking {
     @JoinColumn(name = "farmer_id")
     private Farmer farmer;
         
-    @ManyToOne
-    @JoinColumn(name = "worker_id")
-    private Worker worker;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate bookingDate;

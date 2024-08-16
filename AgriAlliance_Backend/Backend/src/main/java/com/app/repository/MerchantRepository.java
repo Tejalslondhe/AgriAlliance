@@ -14,4 +14,6 @@ public interface MerchantRepository extends JpaRepository<Merchant, Long> {
 	//derived query metho
 
 	boolean existsByEmail(String email);
+	
+	void deleteByEmail(String email);
 }

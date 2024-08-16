@@ -10,6 +10,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +22,14 @@ import com.app.dto.MerchantSignup;
 import com.app.dto.SigninRequest;
 import com.app.dto.SigninResponse;
 import com.app.dto.WorkerSignup;
+import com.app.entities.User;
 import com.app.security.JwtUtils;
 import com.app.services.DoctorService;
 import com.app.services.FarmerService;
 import com.app.services.MerchantService;
 import com.app.services.WorkerService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/auth")
 public class SigninSignupController {
@@ -91,6 +94,7 @@ public class SigninSignupController {
 
             // Generate JWT token
             String jwtToken = jwtUtils.generateJwtToken(verifiedToken);
+            
             SigninResponse resp = new SigninResponse(jwtToken, "Authentication successful!");
             return ResponseEntity.status(HttpStatus.OK).body(resp);
 

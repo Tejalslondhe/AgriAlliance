@@ -12,4 +12,6 @@ public interface FarmerRepository extends JpaRepository<Farmer,Long>{
 	//derived query metho
 	boolean existsByEmail(String email);
 	
+	void deleteByEmail(String email);
+	
 }

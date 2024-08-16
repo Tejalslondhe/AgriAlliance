@@ -22,7 +22,7 @@ import com.app.repository.MerchantRepository;
 public class MerchantServiceImpl implements MerchantService {
 
 	@Autowired
-	private MerchantRepository merchantDao;
+	private MerchantRepository merchantRepository;
 
 	@Autowired
 	private ModelMapper mapper;
@@ -43,7 +43,7 @@ public class MerchantServiceImpl implements MerchantService {
 
 	@Override
 	public List<MerchantDto> displayAllMerchant() {
-		List<Merchant> merchants = merchantDao.findAll();
+		List<Merchant> merchants = merchantRepository.findAll();
 		return merchants.stream().map(merchant -> mapper.map(merchant, MerchantDto.class)).collect(Collectors.toList());
 
 	}
@@ -51,18 +51,18 @@ public class MerchantServiceImpl implements MerchantService {
 	@Override
 	public void deleteMerchant(Long id) {
 
-		Merchant merchant = merchantDao.findById(id).orElseThrow(() -> new RuntimeException("Merchant not found"));
-		merchantDao.delete(merchant);
+		Merchant merchant = merchantRepository.findById(id).orElseThrow(() -> new RuntimeException("Merchant not found"));
+		merchantRepository.delete(merchant);
 	}
 
 	@Override
 	public MerchantDto updateMerchant(Long id, MerchantDto updatetMerchant) {
-		Merchant merchant = merchantDao.findById(id)
+		Merchant merchant = merchantRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Merchant not found with ID: " + id));
 
 		mapper.map(updatetMerchant, merchant);
 
-		merchant = merchantDao.save(merchant);
+		merchant = merchantRepository.save(merchant);
 
 		return mapper.map(merchant, MerchantDto.class);
 	}
@@ -71,11 +71,28 @@ public class MerchantServiceImpl implements MerchantService {
 	public MerchantSignup merchantRegistration(MerchantSignup reqDTO) {
 		Merchant merchant = mapper.map(reqDTO, Merchant.class);
 
-		if (merchantDao.existsByEmail(reqDTO.getEmail()))
+		if (merchantRepository.existsByEmail(reqDTO.getEmail()))
 			throw new ApiException("Email already exist !");
 
 		merchant.setPassword(encoder.encode(merchant.getPassword()));
-		return mapper.map(merchantDao.save(merchant), MerchantSignup.class);
+		return mapper.map(merchantRepository.save(merchant), MerchantSignup.class);
 	}
 
+	@Override
+    public void deleteMerchantByEmail(String email) {
+        Merchant merchant = merchantRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("Merchant not found with email: " + email));
+        merchantRepository.delete(merchant);
+    }
+
+    @Override
+    public MerchantDto updateMerchantByEmail(String email, MerchantDto updateMerchant) {
+        Merchant merchant = merchantRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("Merchant not found with email: " + email));
+
+        mapper.map(updateMerchant, merchant);
+        merchant = merchantRepository.save(merchant);
+        
+        return mapper.map(merchant, MerchantDto.class);
+    }
 }

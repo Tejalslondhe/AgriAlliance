@@ -19,6 +19,10 @@ public interface MerchantService {
 	List<MerchantDto> displayAllMerchant();
 
 	void deleteMerchant(Long id);
+	
+	MerchantDto updateMerchantByEmail(String email, MerchantDto updateMerchant);
+    
+	void deleteMerchantByEmail(String email);
 
 	MerchantDto updateMerchant(Long id, MerchantDto updateMerchant);
 

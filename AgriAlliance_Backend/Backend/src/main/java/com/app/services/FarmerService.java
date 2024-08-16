@@ -22,4 +22,7 @@ public interface FarmerService {
 
 	FarmerDto getFarmerById(Long FarmerId);
 
+	FarmerDto updateFarmerByEmail(String email, FarmerDto updateFarmer);
+   
+	void deleteFarmerByEmail(String email);
 }

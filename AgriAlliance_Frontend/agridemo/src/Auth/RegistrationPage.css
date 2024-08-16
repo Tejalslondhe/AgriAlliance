@@ -1,0 +1,14 @@
+/* src/pages/Auth/RegistrationPage.css */
+
+.registration-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem;
+  }
+  
+  @media (max-width: 576px) {
+    .registration-container {
+      padding: 1rem;
+    }
+  }
+  

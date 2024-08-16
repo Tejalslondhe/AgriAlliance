@@ -3,6 +3,7 @@ package com.app.dto;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+import com.app.enums.Crop;
 import com.app.enums.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -23,7 +24,8 @@ public class MerchantSignup extends BaseSignup{
 	@JsonProperty(access = Access.READ_ONLY) // this property only used during ser.
 	private Long merchantId;
 
-   // private Crop crop;
+	@Enumerated(EnumType.STRING)
+    private Crop crop;
 	
 	@Enumerated(EnumType.STRING)
     private Role role=Role.MERCHANT;

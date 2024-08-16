@@ -1,0 +1,17 @@
+.merchant-dashboard {
+  padding: 20px;
+}
+
+.merchant-dashboard .text-center {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.merchant-dashboard .btn {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.merchant-dashboard .row {
+  margin-top: 20px;
+}

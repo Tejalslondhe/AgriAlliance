@@ -3,6 +3,7 @@ package com.app.controller;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,8 +23,8 @@ public class InstrumentBookingController {
     public InstrumentBooking bookInstrument(
             @RequestParam Long instrumentId,
             @RequestParam Long farmerId,
-            @RequestParam LocalDate bookingDate,
-            @RequestParam LocalDate returnDate) {
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate returnDate) {
         return bookingService.bookInstrument(instrumentId, farmerId, bookingDate, returnDate);
     }
 }

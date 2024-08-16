@@ -39,7 +39,6 @@ public class BookingService {
         InstrumentBooking booking = new InstrumentBooking();
         booking.setInstrument(instrumentOpt.get());
         booking.setFarmer(farmerOpt.get());
-        booking.setWorker(null); // Since only farmers can book
         booking.setBookingDate(bookingDate);
         booking.setReturnDate(returnDate);
 

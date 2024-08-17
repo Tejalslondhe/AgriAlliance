@@ -2,6 +2,8 @@ package com.app.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,25 +17,31 @@ import com.app.enums.Role;
 import com.app.repository.DoctorRepository;
 import com.app.repository.FarmerRepository;
 import com.app.repository.MerchantRepository;
+import com.app.repository.PasswordResetTokenRepository;
 import com.app.repository.WorkerRepository;
 
 @Service
 public class UserService {
+
 
     private final FarmerRepository farmerRepository;
     private final WorkerRepository workerRepository;
     private final MerchantRepository merchantRepository;
     private final DoctorRepository doctorRepository;
     private final PasswordEncoder passwordEncoder;
+    private final PasswordResetTokenRepository tokenRepository;
 
+    
     public UserService(FarmerRepository farmerRepository, WorkerRepository workerRepository,
-                       MerchantRepository merchantRepository, DoctorRepository doctorRepository,
-                       PasswordEncoder passwordEncoder) {
+            MerchantRepository merchantRepository, DoctorRepository doctorRepository,
+            PasswordEncoder passwordEncoder, PasswordResetTokenRepository tokenRepository) {
         this.farmerRepository = farmerRepository;
         this.workerRepository = workerRepository;
         this.merchantRepository = merchantRepository;
         this.doctorRepository = doctorRepository;
         this.passwordEncoder = passwordEncoder;
+        this.tokenRepository = tokenRepository;
+
     }
 
     public Farmer registerFarmer(Farmer farmer) {
@@ -72,4 +80,5 @@ public class UserService {
 
         return doctorRepository.findByEmail(email);
     }
+    
 }

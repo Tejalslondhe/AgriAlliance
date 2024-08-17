@@ -22,4 +22,11 @@ public interface FarmerService {
 
 	FarmerDto getFarmerById(Long FarmerId);
 
+	String initiatePasswordReset(String email);
+
+    String resetPassword(String token, String newPassword);
+
+	
+	
+
 }

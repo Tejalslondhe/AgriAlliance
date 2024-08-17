@@ -1,88 +1,21 @@
-/* src/components/WorkerDashboard.css */
-
-/* Container styles */
 .worker-dashboard {
-  margin-top: 50px;
-  background-color: #f8f9fa; /* Light gray background */
-  padding: 20px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin: 20px;
 }
 
-/* Button styles */
-.worker-dashboard .btn {
-  width: 100%;
-  padding: 15px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px; /* Rounded button corners */
-  transition: background-color 0.3s ease; /* Smooth hover transition */
-  margin-bottom: 15px; /* Space between buttons */
-}
-
-/* Primary button styling */
-.worker-dashboard .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.worker-dashboard .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-}
-
-/* Secondary button styling */
-.worker-dashboard .btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-
-.worker-dashboard .btn-secondary:hover {
-  background-color: #5a6268;
-  border-color: #545b62;
-}
-
-/* Success button styling */
-.worker-dashboard .btn-success {
-  background-color: #28a745;
-  border-color: #28a745;
-}
-
-.worker-dashboard .btn-success:hover {
-  background-color: #218838;
-  border-color: #1e7e34;
-}
-
-/* Danger button styling */
-.worker-dashboard .btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-
-.worker-dashboard .btn-danger:hover {
-  background-color: #c82333;
-  border-color: #bd2130;
-}
-
-/* Row spacing */
-.worker-dashboard .row {
-  margin-bottom: 20px;
-}
-
-/* Text alignment */
-.text-center {
-  text-align: center;
-  color: #343a40; /* Darker text for contrast */
-}
-
-/* Hover effect for buttons */
-.worker-dashboard .btn:hover {
-  color: #fff; /* Ensure text is white on hover */
-}
-
-/* Heading styles */
 .worker-dashboard h2 {
-  color: #343a40; /* Dark color for the heading */
-  font-weight: bold;
+  text-align: center;
   margin-bottom: 20px;
+}
+
+.worker-dashboard .btn {
+  margin: 20px 0; /* Larger vertical spacing between buttons */
+  width: 100%; /* Full width for better alignment */
+}
+
+.worker-dashboard .btn-secondary {
+  background-color: #6c757d; /* Gray color for secondary buttons */
+}
+
+.worker-dashboard .btn-danger {
+  background-color: #dc3545; /* Red color for danger buttons */
 }

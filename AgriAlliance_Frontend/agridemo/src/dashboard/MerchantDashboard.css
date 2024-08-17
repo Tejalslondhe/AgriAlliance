@@ -1,17 +1,21 @@
 .merchant-dashboard {
-  padding: 20px;
+  margin: 20px;
 }
 
-.merchant-dashboard .text-center {
-  font-size: 24px;
-  font-weight: bold;
+.merchant-dashboard h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .merchant-dashboard .btn {
-  width: 100%;
-  margin-bottom: 15px;
+  margin: 15px 0; /* Increased vertical spacing between buttons */
+  width: 100%; /* Full width for better alignment */
 }
 
-.merchant-dashboard .row {
-  margin-top: 20px;
+.merchant-dashboard .btn-secondary {
+  background-color: #6c757d; /* Gray color for secondary buttons */
+}
+
+.merchant-dashboard .btn-danger {
+  background-color: #dc3545; /* Red color for danger buttons */
 }

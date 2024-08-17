@@ -1,51 +1,21 @@
-/* DoctorDashboard.css */
-
 .doctor-dashboard {
-  padding: 2rem;
-  background-color: #f9f9f9; /* Light background color */
+  margin: 20px;
 }
 
 .doctor-dashboard h2 {
-  color: #333; /* Darker color for the heading */
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .doctor-dashboard .btn {
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.doctor-dashboard .btn-primary {
-  background-color: #007bff; /* Primary color */
-  border: none;
-}
-
-.doctor-dashboard .btn-primary:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  margin: 12px 0; /* Moderate vertical spacing between buttons */
+  width: 100%; /* Full width for better alignment */
 }
 
 .doctor-dashboard .btn-secondary {
-  background-color: #6c757d; /* Secondary color */
-  border: none;
-}
-
-.doctor-dashboard .btn-secondary:hover {
-  background-color: #5a6268; /* Darker shade on hover */
-}
-
-.doctor-dashboard .btn-success {
-  background-color: #28a745; /* Success color */
-  border: none;
-}
-
-.doctor-dashboard .btn-success:hover {
-  background-color: #218838; /* Darker shade on hover */
+  background-color: #6c757d; /* Gray color for secondary buttons */
 }
 
 .doctor-dashboard .btn-danger {
-  background-color: #dc3545; /* Danger color */
-  border: none;
-}
-
-.doctor-dashboard .btn-danger:hover {
-  background-color: #c82333; /* Darker shade on hover */
+  background-color: #dc3545; /* Red color for danger buttons */
 }

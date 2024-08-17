@@ -228,6 +228,21 @@ const RegistrationPage = () => {
                 ))}
               </Form.Control>
             </Form.Group>
+            <Form.Group controlId="formCrop">
+              <Form.Label>Crop</Form.Label>
+              <Form.Control
+                as="select"
+                name="crop"
+                value={formData.crop}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Crop</option>
+                {CROP_OPTIONS.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </Form.Control>
+            </Form.Group>
           </>
         )}
         <Button variant="primary" type="submit" disabled={loading}>

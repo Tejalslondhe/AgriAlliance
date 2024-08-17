@@ -1,0 +1,46 @@
+.worker-list {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.worker-list h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.worker-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.worker-list th,
+.worker-list td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.worker-list th {
+  background-color: #f2f2f2;
+}
+
+.worker-list tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.worker-list tr:hover {
+  background-color: #f1f1f1;
+}
+
+.view-profile-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.view-profile-button:hover {
+  background-color: #0056b3;
+}

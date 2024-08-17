@@ -1,0 +1,45 @@
+/* FetchMerchants.css */
+
+.merchant-list {
+  margin: 20px;
+}
+
+.merchant-list h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.merchant-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.merchant-list th, .merchant-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.merchant-list th {
+  background-color: #f2f2f2;
+}
+
+.merchant-list tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.book-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.book-button:hover {
+  background-color: #218838;
+}

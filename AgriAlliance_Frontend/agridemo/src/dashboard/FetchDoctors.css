@@ -1,0 +1,45 @@
+/* FetchDoctors.css */
+
+.doctor-list {
+  margin: 20px;
+}
+
+.doctor-list h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.doctor-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.doctor-list th, .doctor-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.doctor-list th {
+  background-color: #f2f2f2;
+}
+
+.doctor-list tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.book-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.book-button:hover {
+  background-color: #218838;
+}

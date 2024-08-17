@@ -18,6 +18,11 @@ import { AuthContext } from './Auth/AuthContext';
 import FetchInstrument from './dashboard/FetchInstrument';
 import BookInstrument from './dashboard/BookInstrument';
 import FarmerDashboard from './dashboard/FarmerDashboard';
+import DeleteProfile from './dashboard/DeleteProfileForm';
+import EquipmentRental from './dashboard/EquipmentRental';
+import FetchWorkers from './dashboard/FetchWorkers';
+import FetchMerchants from './dashboard/FetchMerchants';
+import FetchDoctors from './dashboard/FetchDoctors';
 
 const App = () => {
   const { isLoggedIn, userInfo, handleLogout } = useContext(AuthContext);
@@ -32,15 +37,20 @@ const App = () => {
         <Route path="/faq" element={<FAQPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="/login" element={<SignIn />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/forgetpasswordpage" element={<ForgotPasswordPage />} />
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/farmerdashboard" element={isLoggedIn ? <FarmerDashboard /> : <Navigate to="/login?role=FARMER" />} />
         <Route path="/merchantdashboard" element={isLoggedIn ? <MerchantDashboard /> : <Navigate to="/login?role=MERCHANT" />} />
         <Route path="/workerdashboard" element={isLoggedIn ? <WorkerDashboard /> : <Navigate to="/login?role=WORKER" />} />
         <Route path="/doctordashboard" element={isLoggedIn ? <DoctorDashboard /> : <Navigate to="/login?role=DOCTOR" />} />
-        <Route path="/instruments" element={<FetchInstrument />} />
+        <Route path="/fetchinstrument" element={<FetchInstrument />} />
         <Route path="/book-instrument" element={<BookInstrument />} />
         <Route path="/dashboard" element={<FarmerDashboard />} />
+        <Route path="/equipment-rental" element={<EquipmentRental/>} />
+        <Route path="/delete-profile" element={<DeleteProfile />} />
+        <Route path="/workers-list" element={<FetchWorkers />} />
+        <Route path="/merchants-list" element={<FetchMerchants />} />
+        <Route path="/doctors-list" element={<FetchDoctors />} />
         
       </Routes>
 

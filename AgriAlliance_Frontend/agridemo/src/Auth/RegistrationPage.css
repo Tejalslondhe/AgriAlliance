@@ -1,14 +1,97 @@
-/* src/pages/Auth/RegistrationPage.css */
+/* RegistrationPage.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f0f2f5;
+  color: #333;
+}
 
 .registration-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e4e8;
+}
+
+.registration-container h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.registration-container .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.registration-container .form-control {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.registration-container .form-control:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+  outline: none;
+}
+
+.registration-container .form-label {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.registration-container .btn-primary {
+  background-color: #3498db;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  padding: 0.75rem 1.25rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.registration-container .btn-primary:hover {
+  background-color: #2980b9;
+  transform: scale(1.02);
+}
+
+.registration-container .btn-primary:focus {
+  outline: none;
+}
+
+.registration-container .alert {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.registration-container .form-select {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.registration-container .form-select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+  outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .registration-container {
+    padding: 1rem;
   }
-  
-  @media (max-width: 576px) {
-    .registration-container {
-      padding: 1rem;
-    }
+
+  .registration-container h2 {
+    font-size: 1.5rem;
   }
-  
+}

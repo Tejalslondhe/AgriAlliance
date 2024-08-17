@@ -1,5 +1,6 @@
 package com.app.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
@@ -22,6 +23,7 @@ public class WebConfig {
 //		source.registerCorsConfiguration("/**", configuration);
 //		return source;
 //	}
+	
 	
 	public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // Adjust the path if necessary

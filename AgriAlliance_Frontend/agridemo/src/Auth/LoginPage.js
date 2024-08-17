@@ -1,7 +1,6 @@
-// LoginPage.js
 import React, { useState } from 'react';
 import { Container, Form, Button, Alert } from 'react-bootstrap';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import '../Auth/LoginPage.css'; // Import custom CSS
 
 const LoginPage = () => {
@@ -21,7 +20,6 @@ const LoginPage = () => {
     setError('');
 
     try {
-      // Replace with your login API endpoint
       const response = await fetch("http://localhost:8080/auth/signin", {
         method: 'POST',
         headers: {
@@ -87,10 +85,16 @@ const LoginPage = () => {
             required
           />
         </Form.Group>
-        <Button variant="primary" type="submit" disabled={loading}>
+        <Button variant="primary" type="submit" disabled={loading} className="mt-3">
           {loading ? 'Logging in...' : 'Login'}
         </Button>
       </Form>
+
+      <div className="signin-links mt-4">
+        <Link to="/forgetpasswordpage">Forgot Password?</Link>
+        <br />
+        <Link to="/register">Not yet registered?</Link>
+      </div>
     </Container>
   );
 };

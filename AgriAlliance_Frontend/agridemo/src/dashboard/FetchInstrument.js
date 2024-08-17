@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './FetchInstrument.css'; // Optional, if you want to style this component
+import './FetchInstrument.css';
 
 const FetchInstrument = () => {
   const [instruments, setInstruments] = useState([]);
@@ -11,6 +11,7 @@ const FetchInstrument = () => {
     const fetchInstruments = async () => {
       try {
         const response = await axios.get('http://localhost:8080/instruments/all');
+        console.log('Fetched Instruments:', response.data); // Debugging line
         setInstruments(response.data);
       } catch (error) {
         console.error('Error fetching instruments:', error);
@@ -27,17 +28,28 @@ const FetchInstrument = () => {
   return (
     <div className="instrument-list">
       <h2>Available Instruments</h2>
-      <ul>
-        {instruments.map((instrument) => (
-          <li key={instrument.id}>
-            <div>
-              <strong>{instrument.name}</strong>
-              <p>{instrument.description}</p>
-              <button onClick={() => handleBookClick(instrument.id)}>Book</button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Rate per Day</th>
+            <th>Type</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {instruments.map((instrument) => (
+            <tr key={instrument.id} className="instrument-item">
+              <td>{instrument.name}</td>
+              <td>${instrument.ratePerDay}</td> {/* Ensure this matches the field name */}
+              <td>{instrument.type}</td>
+              <td>
+                <button className="book-button" onClick={() => handleBookClick(instrument.id)}>Book</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

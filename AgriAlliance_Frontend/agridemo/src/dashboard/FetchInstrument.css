@@ -1,72 +1,49 @@
-/* FetchInstruments.css */
-
-.fetch-instruments-container {
+.instrument-list {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
-  min-height: 100vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.instrument-list h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: #2c3e50;
 }
 
-.instruments-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-.instrument-card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  width: 250px;
-  text-align: center;
-  transition: transform 0.2s;
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-.instrument-card:hover {
-  transform: scale(1.05);
+th {
+  background-color: #34495e;
+  color: #fff;
 }
 
-.instrument-card h3 {
-  margin: 0 0 10px;
-  font-size: 1.2em;
-  color: #007bff;
-}
-
-.instrument-card p {
-  margin: 5px 0;
-  font-size: 0.9em;
-  color: #555;
+.instrument-item:hover {
+  background-color: #f1f1f1;
 }
 
 .book-button {
-  background-color: #28a745;
-  color: #fff;
+  background-color: #27ae60;
+  color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 8px 16px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-.book-button:disabled {
-  background-color: #6c757d;
-  cursor: not-allowed;
-}
-
-.book-button:hover:not(:disabled) {
-  background-color: #218838;
-}
-
-.error {
-  color: #dc3545;
-  text-align: center;
-  margin: 10px 0;
+.book-button:hover {
+  background-color: #2ecc71;
 }

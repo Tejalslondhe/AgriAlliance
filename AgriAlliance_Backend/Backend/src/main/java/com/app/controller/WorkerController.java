@@ -26,6 +26,7 @@ public class WorkerController {
 		@Autowired
 		private WorkerService workerService;
 		
+		//@CrossOrigin(origins = "http://localhost:3000")
 		@GetMapping("/all")
 		public List<WorkerDto> display()
 		{

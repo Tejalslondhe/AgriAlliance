@@ -41,12 +41,12 @@ public class InstrumentBooking {
     @JoinColumn(name = "farmer_id")
     private Farmer farmer;
         
-<<<<<<< HEAD
-
-    @JsonFormat(pattern = "yyyy-MM-dd")
-=======
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
->>>>>>> 5c5619f252e31f143f79a6eac4c406433256a199
+//<<<<<<< HEAD
+//
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+//=======
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+//>>>>>>> 5c5619f252e31f143f79a6eac4c406433256a199
     private LocalDate bookingDate;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

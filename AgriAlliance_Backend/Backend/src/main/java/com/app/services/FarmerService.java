@@ -16,23 +16,13 @@ public interface FarmerService {
 
 	List<FarmerDto> displayAllFarmers();
 
-	void deleteFarmer(Long id);
-
-	FarmerDto updateFarmer(Long farmerId, FarmerDto updateFarmer);
 
 	FarmerDto getFarmerById(Long FarmerId);
 
-<<<<<<< HEAD
+
 	FarmerDto updateFarmerByEmail(String email, FarmerDto updateFarmer);
-   
+
+
 	void deleteFarmerByEmail(String email);
-=======
-	String initiatePasswordReset(String email);
 
-    String resetPassword(String token, String newPassword);
-
-	
-	
-
->>>>>>> 5c5619f252e31f143f79a6eac4c406433256a199
 }

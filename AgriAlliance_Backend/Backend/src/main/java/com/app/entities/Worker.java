@@ -39,10 +39,10 @@ public class Worker extends User {
     @Enumerated(EnumType.STRING)
     private Crop crop;
 
-<<<<<<< HEAD
-=======
-    
->>>>>>> 5c5619f252e31f143f79a6eac4c406433256a199
+//<<<<<<< HEAD
+//=======
+//    
+//>>>>>>> 5c5619f252e31f143f79a6eac4c406433256a199
     @Enumerated(EnumType.STRING)
     private Role role = Role.WORKER;
 

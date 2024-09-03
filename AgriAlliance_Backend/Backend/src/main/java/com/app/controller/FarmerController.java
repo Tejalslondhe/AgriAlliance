@@ -31,19 +31,7 @@ public class FarmerController {
 	{
 		return farmerService.displayAllFarmers();
 	}
-	
-	@DeleteMapping("/{id}")
-	public  ResponseEntity<Void> delete(@PathVariable Long id)
-	{
-		farmerService.deleteFarmer(id);
-		return ResponseEntity.noContent().build();
-	}
-	
-	@PutMapping("/{id}")
-	public FarmerDto update(@PathVariable Long id, @RequestBody FarmerDto farmerdto)
-	{
-		 return farmerService.updateFarmer(id, farmerdto);
-	}
+		
 	
 	@PutMapping("/update/{email}")
     public ResponseEntity<FarmerDto> updateFarmerByEmail(

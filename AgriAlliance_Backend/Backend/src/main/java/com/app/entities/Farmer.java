@@ -41,6 +41,11 @@ public class Farmer extends User {
     @OneToMany(mappedBy = "farmer",fetch = FetchType.EAGER)
     private List<InstrumentBooking> instrumentBookings;
 
+	public Farmer orElseThrow(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
    
     
    

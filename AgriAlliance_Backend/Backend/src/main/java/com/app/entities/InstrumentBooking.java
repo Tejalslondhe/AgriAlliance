@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -39,10 +41,14 @@ public class InstrumentBooking {
     @JoinColumn(name = "farmer_id")
     private Farmer farmer;
         
+<<<<<<< HEAD
 
     @JsonFormat(pattern = "yyyy-MM-dd")
+=======
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+>>>>>>> 5c5619f252e31f143f79a6eac4c406433256a199
     private LocalDate bookingDate;
     
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
 }
